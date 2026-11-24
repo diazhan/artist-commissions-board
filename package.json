@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "node --env-file=.env scripts/dev.js",
     "webhook": "node --env-file=.env scripts/webhook.js",
-    "check": "node --check api/telegram.js && node --check lib/bot.js && node --check lib/profile.js && node --check lib/storage.js && node --check lib/telegram.js && node --check scripts/dev.js && node --check scripts/webhook.js"
+    "check": "node --check api/telegram.js && node --check lib/bot.js && node --check lib/i18n.js && node --check lib/profile.js && node --check lib/storage.js && node --check lib/telegram.js && node --check scripts/dev.js && node --check scripts/webhook.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.13.0",
