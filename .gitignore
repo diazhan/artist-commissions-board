@@ -1,0 +1,7 @@
+# Secrets: real keys live here, never commit this file
+.env
+.env.local
+
+node_modules/
+.vercel/
+.DS_Store

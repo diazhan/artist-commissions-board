@@ -1,0 +1,20 @@
+{
+  "name": "artist-commissions-board",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "@ArtistCommissionsBoardBot: Telegram bot where artists and clients find each other",
+  "engines": {
+    "node": ">=20.6"
+  },
+  "scripts": {
+    "dev": "node --env-file=.env scripts/dev.js",
+    "webhook": "node --env-file=.env scripts/webhook.js",
+    "check": "node --check api/telegram.js && node --check lib/bot.js && node --check lib/profile.js && node --check lib/storage.js && node --check lib/telegram.js && node --check scripts/dev.js && node --check scripts/webhook.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.13.0",
+    "@upstash/redis": "^1.41.1",
+    "zod": "^4.6.7"
+  }
+}
