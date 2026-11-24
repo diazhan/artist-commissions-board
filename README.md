@@ -52,10 +52,10 @@ Deploying to Vercel:
 
 ### v1 — the core
 
-- [ ] Artist profile from free text: styles, examples, price range, currency, exchange types
+- [x] Artist profile from free text: styles, examples, price range, currency, exchange types
 - [ ] Order from free text: what is needed, style, deadline, budget, currency, exchange type
 - [ ] AI matching: 2–3 artists for an order, each with a short explanation
-- [ ] Deployed on Vercel and answering in Telegram
+- [x] Deployed on Vercel and answering in Telegram
 
 ### v2 — after the core works
 
