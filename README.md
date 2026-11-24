@@ -1,6 +1,6 @@
 # Artist Commissions Board
 
-A Telegram bot where artists and clients find each other. Artists post a profile, clients post an order, and an AI assistant suggests matching artists and explains why each one fits.
+[@ArtistCommissionsBoardBot](https://t.me/ArtistCommissionsBoardBot) is a Telegram bot where artists and clients find each other. Artists post a profile, clients post an order, and an AI assistant suggests matching artists and explains why each one fits.
 
 **The bot never generates images.** It exists to help people who draw by hand find work; AI-generated art is not allowed.
 
@@ -19,6 +19,32 @@ A Telegram bot where artists and clients find each other. Artists post a profile
 - Upstash Redis for profiles, orders and unfinished conversations
 - Claude API (`claude-haiku-5-5`) for filling in profiles and matching
 - Secrets (`TELEGRAM_BOT_TOKEN`, `ANTHROPIC_API_KEY`) live only in Vercel environment variables
+
+## Project structure
+
+```
+api/telegram.js     webhook: Vercel serves it at /api/telegram, Telegram sends updates here
+lib/bot.js          conversation logic: steps and buttons
+lib/profile.js      Claude: free text -> artist profile, and profile -> message text
+lib/storage.js      Upstash Redis: sessions and confirmed profiles
+lib/telegram.js     sending messages and buttons through the Telegram Bot API
+scripts/dev.js      run the bot on your computer (long polling, no webhook needed)
+scripts/webhook.js  turn the webhook on or off after deploying
+```
+
+## Running it
+
+You need Node.js 20.6 or newer.
+
+1. `npm install`
+2. Fill in `.env` (see `.env.example` for where each value comes from). `.env` is in `.gitignore` and is never committed.
+3. Run locally: `npm run dev`, then write to [@ArtistCommissionsBoardBot](https://t.me/ArtistCommissionsBoardBot) in Telegram.
+
+Deploying to Vercel:
+
+1. Import the repository in Vercel and add the same variables from `.env` under Settings → Environment Variables.
+2. After the deploy, point Telegram at it: `npm run webhook -- set https://<your-project>.vercel.app`
+3. Check it: `npm run webhook -- info`. To go back to local testing: `npm run webhook -- delete`.
 
 ## Roadmap
 
