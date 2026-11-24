@@ -8,7 +8,7 @@
 
 ## How it will work
 
-1. `/start`: choose "I'm an artist" or "I'm looking for an artist".
+1. `/start`: choose a language (Kazakh, Russian or English; change it any time with `/language`), then "I'm an artist" or "I'm looking for an artist".
 2. Describe yourself or your order in your own words. Claude turns the text into a profile or order card; you check and confirm it.
 3. For an order, the bot narrows down artists with ordinary filters (style, budget, currency, exchange type), then Claude ranks the short list and writes one or two sentences on why each artist fits.
 4. If nothing fits, the bot says so instead of suggesting a poor match.
@@ -25,6 +25,7 @@
 ```
 api/telegram.js     webhook: Vercel serves it at /api/telegram, Telegram sends updates here
 lib/bot.js          conversation logic: steps and buttons
+lib/i18n.js         every text the bot shows, in Kazakh, Russian and English
 lib/profile.js      Claude: free text -> artist profile, and profile -> message text
 lib/storage.js      Upstash Redis: sessions and confirmed profiles
 lib/telegram.js     sending messages and buttons through the Telegram Bot API
@@ -44,6 +45,7 @@ Deploying to Vercel:
 
 1. Import the repository in Vercel and add the same variables from `.env` under Settings → Environment Variables.
 2. After the deploy, point Telegram at it: `npm run webhook -- set https://<your-project>.vercel.app`
+   This also sets the `/` command menu in Kazakh, Russian and English (`npm run webhook -- commands` sets only the menu).
 3. Check it: `npm run webhook -- info`. To go back to local testing: `npm run webhook -- delete`.
 
 ## Roadmap
@@ -59,7 +61,7 @@ Deploying to Vercel:
 
 - [ ] Currencies KZT / USD / RUB: "show only my currency" or "convert" (converted prices marked `≈`, with the rate date)
 - [ ] Exchange types: money, barter (art for art, channel ad for art), free
-- [ ] Russian, English and Kazakh, switchable with `/language`
+- [x] Russian, English and Kazakh, switchable with `/language`
 - [ ] Trust and safety: "Report" button, admin moderation; the bot never takes or holds money
 - [ ] Event board: giveaways, lotteries, channel ad exchanges
 - [ ] Recommendation feed: one card at a time with ❤️ / ⏭ / 🔕 / Open
